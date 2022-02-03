@@ -10,6 +10,7 @@ import { SocketIoModule } from 'ngx-socket-io';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IonicStorageModule } from '@ionic/storage-angular';
 import { ChatSocket } from './sockets/chat.socket';
 import { SongsSocket } from './sockets/songs.socket';
 
@@ -17,14 +18,14 @@ import { SongsSocket } from './sockets/songs.socket';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule,HttpClientModule,SocketIoModule , TranslateModule.forRoot({
+  imports: [BrowserModule, HttpClientModule, SocketIoModule, IonicStorageModule.forRoot(), TranslateModule.forRoot({
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,
       deps: [HttpClient]
     }
   }), IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ChatSocket, SongsSocket],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, /*ChatSocket, SongsSocket*/],
   bootstrap: [AppComponent],
 })
 export class AppModule {

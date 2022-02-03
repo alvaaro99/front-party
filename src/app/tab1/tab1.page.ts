@@ -14,14 +14,14 @@ export class Tab1Page implements OnInit {
   messages: Message[] = [];
 
   ngOnInit(): void {
-    this.chatService.connectSocket();
-    this.chatService.onNewMessage().subscribe((message:Message) => this.messages.push(message))
+    //this.chatService.connectSocket();
+    //this.chatService.onNewMessage().subscribe((message:Message) => this.messages.push(message))
   }
 
 
   sendMessage(message:string|number): void {
     console.log('sending')
-    this.chatService.sendMessage({sender: 'alvaro',content: message as string,date: 'aa'})
+    //this.chatService.sendMessage({sender: 'alvaro',content: message as string,date: 'aa'})
   }
 
 }

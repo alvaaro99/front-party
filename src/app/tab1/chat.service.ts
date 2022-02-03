@@ -7,7 +7,7 @@ import { ChatSocket } from '../sockets/chat.socket';
   providedIn: 'root'
 })
 export class ChatService {
-
+/*
   constructor(private socket: ChatSocket) { }
 
 
@@ -21,5 +21,5 @@ export class ChatService {
 
   onNewMessage(): Observable<Message> {
     return this.socket.fromEvent('newMessageClient')
-  }
+  }*/
 }
