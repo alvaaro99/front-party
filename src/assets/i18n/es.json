@@ -1,3 +1,8 @@
 {
-    "message": "Mensaje"
+  "askHaveAccount": "¿Tienes cuenta?",
+  "askNewAccount": "¿Quieres crear una nueva?",
+  "login!": "Entrar!",
+  "register!": "Crear cuenta",
+  "or": "o",
+  "message": "Mensaje"
 }
