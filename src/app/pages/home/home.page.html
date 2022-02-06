@@ -1,0 +1,21 @@
+<ion-content>
+  <ion-grid style="height: 100%">
+    <ion-row class="middle" style="height: 100%">
+      <ion-col size="8" offset="2">
+        <span class="margin-bot"> {{ "askHaveAccount" | translate }} </span>
+
+        <ion-button [routerLink]="['/login']" expand="block" color="primary">
+          {{ "login!" | translate }}
+        </ion-button>
+
+        <span class="divider line one-line"> {{ "or" | translate }} </span>
+
+        <span class="margin-bot">{{ "askNewAccount" | translate }}</span>
+
+        <ion-button [routerLink]="['/register']" expand="block" color="danger">
+          {{ "register!" | translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
