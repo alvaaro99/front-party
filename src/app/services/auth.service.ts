@@ -24,6 +24,9 @@ export class AuthService {
       })
       .toPromise()
       .then(() => true)
-      .catch(() => false);
+      .catch(() => {
+        this.storage.remove('access_token');
+        return false;
+      });
   }
 }
