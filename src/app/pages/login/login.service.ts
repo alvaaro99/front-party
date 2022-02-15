@@ -4,12 +4,17 @@ import { Storage } from '@ionic/storage-angular';
 import { UserLoginDto } from 'src/app/models/userLogin.dto';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient, private storage: Storage) {}
+  constructor(
+    private http: HttpClient,
+    private storage: Storage,
+    private router: Router
+  ) {}
 
   login(user: UserLoginDto) {
     this.http
@@ -22,6 +27,9 @@ export class LoginService {
             'access_token',
             `Bearer ${response['access_token']}`
           );
+        }),
+        tap(() => {
+          this.router.navigateByUrl('');
         })
       )
       .subscribe();
