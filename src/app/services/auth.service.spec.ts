@@ -18,7 +18,23 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be user logged', () => {
-    expect(false).toBeFalse();
+  it('should be user logged', async () => {
+    spyOn(service, 'validateToken').and.resolveTo(true);
+    spyOn(service['storage'], 'get').and.resolveTo('real token');
+
+    expect(await service.isUserLogged()).toBeTrue();
+  });
+
+  it('should be user no logged with expired token', async () => {
+    spyOn(service, 'validateToken').and.resolveTo(false);
+    spyOn(service['storage'], 'get').and.resolveTo('fake token');
+
+    expect(await service.isUserLogged()).toBeFalse();
+  });
+
+  it('should be user no logged without token', async () => {
+    spyOn(service['storage'], 'get').and.resolveTo();
+
+    expect(await service.isUserLogged()).toBeFalse();
   });
 });
