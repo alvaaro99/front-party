@@ -9,21 +9,36 @@
   <ion-grid style="height: 100%">
     <ion-row class="middle" style="height: 100%">
       <ion-col size="8" offset="2">
-        <form>
-          <!-- (ngSubmit)="login()" [formGroup]="userToLogin" -->
+        <form (ngSubmit)="register()" [formGroup]="userToRegister">
           <ion-item>
             <ion-label position="stacked">Email</ion-label>
-            <!-- <ion-input formControlName="email"></ion-input> -->
+            <ion-input formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">{{ 'name' | translate}}</ion-label>
+            <ion-input formControlName="name"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">
               {{ "password" | translate}}
             </ion-label>
-            <!-- <ion-input type="password" formControlName="password"></ion-input> -->
+            <ion-input type="password" formControlName="password"></ion-input>
           </ion-item>
-          <ion-button expand="block" type="submit">
-            <!-- [disabled]="!userToLogin.valid" -->
-            {{ "login!" | translate}}
+          <ion-item>
+            <ion-label position="stacked">
+              {{ "repeatPassword" | translate}}
+            </ion-label>
+            <ion-input
+              type="password"
+              formControlName="repeatPassword"
+            ></ion-input>
+          </ion-item>
+          <ion-button
+            expand="block"
+            type="submit"
+            [disabled]="!userToRegister.valid"
+          >
+            {{ "register!" | translate}}
           </ion-button>
         </form>
       </ion-col>
