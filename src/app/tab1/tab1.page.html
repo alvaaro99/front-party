@@ -1,18 +1,28 @@
-
 <ion-content [fullscreen]="true">
-
-
+  <section class="list-message"></section>
   <ion-list>
     <ion-item *ngFor="let message of messages">
       <ion-label>{{message | json}}</ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-item>
-    <ion-label position="floating">{{ 'message' | translate }}</ion-label>
-    <ion-input inputmode="text" #messageToSend></ion-input>
-  </ion-item>
-
-  <ion-button color="primary" (click)="sendMessage(messageToSend.value)">Primary</ion-button>
-
+  <section class="send-message">
+    <ion-grid>
+      <ion-row class="middle">
+        <ion-col size="9">
+          <ion-item>
+            <ion-label position="stacked"
+              >{{ 'message' | translate }}</ion-label
+            >
+            <ion-textarea inputmode="text" #messageToSend></ion-textarea>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-button color="dark" (click)="sendMessage(messageToSend.value)"
+            ><ion-icon name="send"></ion-icon
+          ></ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
 </ion-content>
