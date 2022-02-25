@@ -5,10 +5,9 @@ import { ChatService } from './chat.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
-
   constructor(private chatService: ChatService) {}
 
   messages: Message[] = [];
@@ -18,10 +17,8 @@ export class Tab1Page implements OnInit {
     //this.chatService.onNewMessage().subscribe((message:Message) => this.messages.push(message))
   }
 
-
-  sendMessage(message:string|number): void {
-    console.log('sending')
+  sendMessage(message: string | number): void {
+    console.log('sending' + message);
     //this.chatService.sendMessage({sender: 'alvaro',content: message as string,date: 'aa'})
   }
-
 }
