@@ -5,5 +5,7 @@
   "register!": "Crear cuenta",
   "or": "o",
   "message": "Mensaje",
-  "password": "Contraseña"
+  "password": "Contraseña",
+  "repeatPassword": "Repite Contraseña",
+  "name": "Nombre"
 }
