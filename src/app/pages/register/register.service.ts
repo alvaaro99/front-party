@@ -17,7 +17,7 @@ export class RegisterService {
   ) {}
 
   register(user: UserRegisterDto) {
-    this.http
+    return this.http
       .post(`${environment.backUrl}/auth/register`, user, {
         headers: { 'Content-Type': 'application/json' },
       })
@@ -31,7 +31,6 @@ export class RegisterService {
         tap(() => {
           this.router.navigateByUrl('');
         })
-      )
-      .subscribe();
+      );
   }
 }

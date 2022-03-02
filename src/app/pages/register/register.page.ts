@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserRegisterDto } from 'src/app/models/userRegister.dto';
+import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { ConfirmedValidator } from 'src/app/validators/confirm-password.validator';
 import { RegisterService } from './register.service';
 
@@ -12,7 +13,9 @@ import { RegisterService } from './register.service';
 export class RegisterPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    public alertController: AlertController,
+    private translateService: TranslateService
   ) {}
 
   public userToRegister: FormGroup = this.formBuilder.group(
@@ -29,8 +32,22 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {}
 
+  async showAlert() {
+    const alert = await this.alertController.create({
+      header: this.translateService.instant('emailAlreadyRegistered'),
+      message: this.translateService.instant('tryOtherEmail'),
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
   register() {
     const { repeatPassword, ...newUser } = this.userToRegister.value;
-    this.registerService.register(newUser);
+    this.registerService.register(newUser).subscribe({
+      error: async (err) => {
+        if (err.error.statusCode == 400) this.showAlert();
+      },
+    });
   }
 }
