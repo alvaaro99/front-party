@@ -9,5 +9,7 @@
   "repeatPassword": "Repite Contraseña",
   "name": "Nombre",
   "incorrectCredentials": "Credenciales Incorrectas",
-  "tryAgain": "Vuelve a intentarlo"
+  "tryAgain": "Vuelve a intentarlo",
+  "emailAlreadyRegistered": "Email ya registrado",
+  "tryOtherEmail": "Intentalo con otro email"
 }
