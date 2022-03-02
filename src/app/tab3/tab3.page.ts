@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 
@@ -7,8 +7,14 @@ import { UserService } from '../services/user.service';
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
   constructor(private userService: UserService) {}
 
-  user: User;
+  ngOnInit(): void {
+    this.userService
+      .getMyUser()
+      .then((obs$) => obs$.subscribe((user: User) => (this.user = user)));
+  }
+
+  user: User = { name: 'NAME', email: 'EMAIL' };
 }
