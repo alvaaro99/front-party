@@ -17,7 +17,7 @@ export class LoginService {
   ) {}
 
   login(user: UserLoginDto) {
-    this.http
+    return this.http
       .post(`${environment.backUrl}/auth/login`, user, {
         headers: { 'Content-Type': 'application/json' },
       })
@@ -31,7 +31,6 @@ export class LoginService {
         tap(() => {
           this.router.navigateByUrl('');
         })
-      )
-      .subscribe();
+      );
   }
 }

@@ -7,5 +7,7 @@
   "message": "Mensaje",
   "password": "Contraseña",
   "repeatPassword": "Repite Contraseña",
-  "name": "Nombre"
+  "name": "Nombre",
+  "incorrectCredentials": "Credenciales Incorrectas",
+  "tryAgain": "Vuelve a intentarlo"
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { UserLoginDto } from 'src/app/models/userLogin.dto';
 import { LoginService } from './login.service';
 
@@ -11,7 +13,9 @@ import { LoginService } from './login.service';
 export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    public alertController: AlertController,
+    private translateService: TranslateService
   ) {}
 
   public userToLogin: FormGroup = this.formBuilder.group({
@@ -21,7 +25,22 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
+  async showAlert() {
+    const alert = await this.alertController.create({
+      header: this.translateService.instant('incorrectCredentials'),
+      message: this.translateService.instant('tryAgain'),
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
   login() {
-    this.loginService.login(this.userToLogin.value as UserLoginDto);
+    this.loginService.login(this.userToLogin.value as UserLoginDto).subscribe(
+      (res) => console.log(res),
+      async (err) => {
+        if (err.status == 401) this.showAlert();
+      }
+    );
   }
 }
