@@ -25,5 +25,20 @@
         </ion-row>
       </ion-col>
     </ion-row>
+
+    <ion-row class="mt-5">
+      <ion-col offset="1" size="10" class="mt-5">
+        <ion-button (click)="showAlertChangePassword()" expand="block">
+          {{ 'changePassword' | translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="mt-5">
+      <ion-col offset="1" size="10" class="mt-5">
+        <ion-button (click)="logout()" expand="block" color="danger">
+          {{ 'logout' | translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
