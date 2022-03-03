@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -15,5 +14,20 @@ export class UserService {
     return this.http.get(environment.backUrl + '/users/me', {
       headers: { Authorization: token },
     });
+  }
+
+  async changePassword(oldPassword, newPassword) {
+    const token = await this.storage.get('access_token');
+    return this.http.put(
+      environment.backUrl + '/users/changePassword',
+      { oldPassword, newPassword },
+      {
+        headers: { Authorization: token },
+      }
+    );
+  }
+
+  logout() {
+    return this.storage.remove('access_token');
   }
 }
