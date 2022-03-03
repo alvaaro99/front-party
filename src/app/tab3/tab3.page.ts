@@ -64,59 +64,43 @@ export class Tab3Page implements OnInit {
     await alert.present();
   }
 
-  async incorrectPassword() {
+  async simpleAlert(header: string, message: string) {
     const alert = await this.alertController.create({
-      header: this.translateService.instant('incorrectPassword'),
-      message: this.translateService.instant('incorrectPasswordExplain'),
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  async passwordChanged() {
-    const alert = await this.alertController.create({
-      header: this.translateService.instant('passwordChanged'),
-      message: this.translateService.instant('passwordChangedExplained'),
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  async newPasswordNotEquals() {
-    const alert = await this.alertController.create({
-      header: this.translateService.instant('tryAgain'),
-      message: this.translateService.instant('passwordsNotEquals'),
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  async invalidPassword() {
-    const alert = await this.alertController.create({
-      header: this.translateService.instant('incorrectPassword'),
-      message: this.translateService.instant('passwordRequisites'),
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
-
-  async passwordCanBeEquals() {
-    const alert = await this.alertController.create({
-      header: this.translateService.instant('incorrectPassword'),
-      message: this.translateService.instant('oldAndNewPasswordCantBeEquals'),
+      header: header,
+      message: message,
       buttons: ['OK'],
     });
     await alert.present();
   }
 
   handleChangePassword({ oldPassword, newPassword, confirmNewPassword }) {
-    if (newPassword !== confirmNewPassword) return this.newPasswordNotEquals();
-    if (!this.isValidPassword(newPassword)) return this.invalidPassword();
-    if (oldPassword === newPassword) return this.passwordCanBeEquals();
+    if (newPassword !== confirmNewPassword)
+      return this.simpleAlert(
+        this.translateService.instant('tryAgain'),
+        this.translateService.instant('passwordsNotEquals')
+      );
+    if (!this.isValidPassword(newPassword))
+      return this.simpleAlert(
+        this.translateService.instant('incorrectPassword'),
+        this.translateService.instant('passwordRequisites')
+      );
+    if (oldPassword === newPassword)
+      return this.simpleAlert(
+        this.translateService.instant('incorrectPassword'),
+        this.translateService.instant('oldAndNewPasswordCantBeEquals')
+      );
     this.userService.changePassword(oldPassword, newPassword).then((obs$) => {
       obs$.subscribe(
-        () => this.passwordChanged(),
-        () => this.incorrectPassword()
+        () =>
+          this.simpleAlert(
+            this.translateService.instant('passwordChanged'),
+            this.translateService.instant('passwordChangedExplained')
+          ),
+        () =>
+          this.simpleAlert(
+            this.translateService.instant('incorrectPassword'),
+            this.translateService.instant('incorrectPasswordExplain')
+          )
       );
     });
   }
