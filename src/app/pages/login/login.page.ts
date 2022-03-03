@@ -36,11 +36,10 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.loginService.login(this.userToLogin.value as UserLoginDto).subscribe(
-      (res) => console.log(res),
-      async (err) => {
+    this.loginService.login(this.userToLogin.value as UserLoginDto).subscribe({
+      error: async (err) => {
         if (err.status == 401) this.showAlert();
-      }
-    );
+      },
+    });
   }
 }
