@@ -25,5 +25,6 @@
   "incorrectPasswordExplain": "La actual contraseña no coincide",
   "passwordChanged": "Contraseña Actualizada",
   "passwordChangedExplained": "Su contraseña se ha actualizado correctamente",
-  "oldAndNewPasswordCantBeEquals": "La contraseña actual y la nueva no puede ser iguales"
+  "oldAndNewPasswordCantBeEquals": "La contraseña actual y la nueva no puede ser iguales",
+  "myProfile": "Mi Perfil"
 }
