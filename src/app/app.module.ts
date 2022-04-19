@@ -14,24 +14,33 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { ChatSocket } from './sockets/chat.socket';
 import { SongsSocket } from './sockets/songs.socket';
 
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, HttpClientModule, SocketIoModule, IonicStorageModule.forRoot(), TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: HttpLoaderFactory,
-      deps: [HttpClient]
-    }
-  }), IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, /*ChatSocket, SongsSocket*/],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    SocketIoModule,
+    IonicStorageModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    IonicModule.forRoot(),
+    AppRoutingModule,
+  ],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    /*, SongsSocket*/
+    ,
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-
-}
+export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

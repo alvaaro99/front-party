@@ -1,0 +1,8 @@
+<div class="bubble" [ngClass]="{ alt: sentByMe }">
+  <div class="txt">
+    <p class="name" *ngIf="!sentByMe">{{ message.sender.name }}</p>
+    <p class="message">{{ message.content }}</p>
+    <span class="timestamp">{{ message.date | date: "HH:mm" }}</span>
+  </div>
+  <div class="bubble-arrow" [ngClass]="{ alt: sentByMe }"></div>
+</div>

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Socket } from "ngx-socket-io";
+import { Injectable } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 @Injectable()
 export class ChatSocket extends Socket {

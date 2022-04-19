@@ -1,10 +1,12 @@
 <ion-content [fullscreen]="true">
-  <section class="list-message"></section>
-  <ion-list>
-    <ion-item *ngFor="let message of messages">
-      <ion-label>{{message | json}}</ion-label>
-    </ion-item>
-  </ion-list>
+  <section class="list-message">
+    <ion-list class="mr-5 ml-5 pt-5" #listMessages>
+      <app-message-bubble
+        *ngFor="let message of messages"
+        [message]="message"
+      ></app-message-bubble>
+    </ion-list>
+  </section>
 
   <section class="send-message">
     <ion-grid>
@@ -18,7 +20,7 @@
           <ion-button
             color="dark"
             (click)="sendMessage(messageToSend.value)"
-            dis
+            [disabled]="messageToSend.value && messageToSend.value.length < 2"
             ><ion-icon name="send"></ion-icon
           ></ion-button>
         </ion-col>

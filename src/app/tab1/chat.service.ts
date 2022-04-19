@@ -3,23 +3,19 @@ import { Observable } from 'rxjs';
 import { Message } from '../models/message';
 import { ChatSocket } from '../sockets/chat.socket';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ChatService {
-/*
-  constructor(private socket: ChatSocket) { }
-
+  constructor(private socket: ChatSocket) {}
 
   connectSocket(): void {
-    this.socket.connect()
+    this.socket.connect();
   }
 
   sendMessage(message: Message): void {
-    this.socket.emit('newMessageServer',message)
+    this.socket.emit('newMessageServer', message);
   }
 
   onNewMessage(): Observable<Message> {
-    return this.socket.fromEvent('newMessageClient')
-  }*/
+    return this.socket.fromEvent('newMessageClient');
+  }
 }

@@ -21,9 +21,7 @@ export class Tab3Page implements OnInit {
   user: User = { name: 'NAME', email: 'EMAIL' };
 
   ngOnInit(): void {
-    this.userService
-      .getMyUser()
-      .then((obs$) => obs$.subscribe((user: User) => (this.user = user)));
+    this.user = this.userService.myUser;
   }
 
   async showAlertChangePassword() {
